@@ -1,51 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="icon"
+      href="https://bcw.blob.core.windows.net/public/img/9977764104160066"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.0.96/css/materialdesignicons.min.css"
+      integrity="sha512-fXnjLwoVZ01NUqS/7G5kAnhXNXat6v7e3M9PhoMHOTARUMCaf5qNO84r5x9AFf5HDzm3rEZD8sb/n6dZ19SzFA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="assets/style/main.css" />
+    <link rel="stylesheet" href="assets/style/style.css" />
+    <title>rainMoney-mvc</title>
+  </head>
+  <style>
+    body.debug .container,
+    body.debug .container-fluid {
+      outline: 2px double blue;
+      outline-offset: -2px;
+    }
+  
+    body.debug .row {
+      outline: 2px dashed red;
+      outline-offset: -2px;
+    }
+  
+    body.debug [class*="col-"] {
+      outline: 2px dotted forestgreen;
+      outline-offset: -3px;
+    }
+  </style>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="icon" href="https://bcw.blob.core.windows.net/public/img/9977764104160066">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.0.96/css/materialdesignicons.min.css"
-    integrity="sha512-fXnjLwoVZ01NUqS/7G5kAnhXNXat6v7e3M9PhoMHOTARUMCaf5qNO84r5x9AFf5HDzm3rEZD8sb/n6dZ19SzFA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="assets/style/main.css">
-  <link rel="stylesheet" href="assets/style/style.css">
-  <title>rainMoney-mvc</title>
-</head>
+  <body class="debug">
+    <header>
+      <nav
+        class="navbar navbar-dark navbar-expand bg-dark text-light no-select"
+      >
+        <a class="navbar-brand ms-3" href="#">
+          <img
+            src="https://codeworks.blob.core.windows.net/public/assets/img/cw-mark.png"
+            height="45"
+            alt=""
+            loading="lazy"
+          />
+          <span class="ms-2">Rain money</span>
+        </a>
+      </nav>
+    </header>
 
-<body>
-  <header>
-    <nav class="navbar navbar-dark navbar-expand bg-dark text-light no-select">
-      <a class="navbar-brand ms-3" href="#">
-        <img src="https://codeworks.blob.core.windows.net/public/assets/img/cw-mark.png" height="45" alt=""
-          loading="lazy">
-        <span class="ms-2">rainMoney-mvc</span>
-      </a>
-    </nav>
-  </header>
-  <main>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div id="app"></div>
+    <main>
+      <div class="container">
+        <div class="row justify-content-between mt-5">
+          <div class="col-5 m-3">
+            <div class="bg-success">
+              <form onsubmit="app.budgetsController.createBudget()">
+                <div class="mb-3">
+                <label for="budget-input" class="form-label"
+                  >Create a budget</label
+                >
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  id="budget-input"
+                  placeholder="create a budget"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="set-price" class="form-label"
+                  >Set a price</label
+                >
+                <input
+                  type="number"
+                  name="price"
+                  class="form-control"
+                  id="set-price"
+                  placeholder="set a price"
+                />
+              </div>
+              <div class="form-floating text-dark">
+              <select class="form-select" name="type">
+                <!-- <option selected>Choose an order type</option> -->
+                <option selected value="ItemToBuy">Item to buy</option>
+                <option value="Trip">Trip to budget</option>
+                <option value="Furniture">Furniture to replace</option>
+              </select>
+              <label for="type">Budget Type</label>
+            </div>
+            <button type="submit" class="btn btn-primary m-2">submit this budget</button>
+              </form>
+            </div>
+            </div>
+
+          <div class="col-6" id="budgets">
+
+            <!-- <div class="container">
+              <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-between h4">
+                    <div>CHB</div>
+                    <i class="mdi mdi-television"></i>
+                    <span>New TV</span>
+                    <div>
+                      <span>360</span>
+                      <span>of</span>
+                      <span>500</span>
+                    </div>
+                  </div>
+                  <div>
+                  </div>
+                </div>
+                <div class="row fs-4 justify-content-between">
+                  <div class="col-6">
+                    <span>sell old tv</span>
+                  </div>
+                  <div class="col-2">
+                    <span>
+                      $<span>000</span>
+                    </span>
+                  </div>
+                  <div class="col-2">
+                    <i class="mdi mdi-trash-can"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-between">
+              <div class=col-5>
+                  <input class="form-control square-right" type="text" required minlength="2" name="name" placeholder="Name..."/>
+              <label for="name" class="visually-hidden">Name</label>
+            </div>
+            <div class="col-3">
+              <input class="form-control  square" type="number" required min="0" name="price" placeholder="0.00"/>
+              <label for="price" class="visually-hidden">Price</label>
+              </div>
+              <div class="col-2">
+                <button class="btn btn-primary">button</button>
+              </div>
+            </div>
+            </div> -->
+
+
+
+  
+
+
+          </div>
+          </div>
+         
         </div>
       </div>
-    </div>
-  </main>
-  <footer class="bg-dark text-light">
-    <div class="text-center no-select">
-      <p><small>Made with 💖 by CodeWorks</small></p>
-    </div>
-  </footer>
+    </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"
-    integrity="sha256-hw7v8jZF/rFEdx1ZHepT4D73AFTHLu/P9kEyrNesRyc=" crossorigin="anonymous"></script>
-  <script src="app/App.js" type="module"></script>
-</body>
+    <footer class="bg-dark text-light">
+      <div class="text-center no-select">
+        <p><small>Made with 💖 by CodeWorks</small></p>
+      </div>
+    </footer>
 
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"
+      integrity="sha256-hw7v8jZF/rFEdx1ZHepT4D73AFTHLu/P9kEyrNesRyc="
+      crossorigin="anonymous"
+    ></script>
+    <script src="app/App.js" type="module"></script>
+  </body>
 </html>
