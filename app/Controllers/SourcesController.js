@@ -1,24 +1,23 @@
 import { sourcesServices } from "../Services/SourcesServices.js";
 import { getFormData } from "../Utils/FormHandler.js";
 
-
-
 export class SourcesController {
   constructor() {
     console.log("hello from sources controller");
   }
-  createSource(){
+  createSource(budgetId) {
     try {
       window.event.preventDefault();
-      console.log("hello from create budget");
+      console.log("hello from create source");
       const form = window.event.target;
-      let formData = getFormData(form);
-      sourcesServices.createSource(formData);
+      let newSource = getFormData(form);
+      newSource.budgetId = budgetId;
+
+      sourcesServices.createSource(newSource);
       // @ts-ignore
       form.reset();
     } catch (error) {
       console.error("error", error);
     }
   }
-  }
-
+}

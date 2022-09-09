@@ -9,21 +9,10 @@ class AppState extends EventEmitter {
   /** @type {import('./Models/Value').Value[]} */
   values = loadState("values", Value);
 
-  budgets = [
-    new Budget({
-      name: "New Tv",
-      price: 500,
-      purchased: false,
-    }),
-  ];
-
-  sources = [
-    new Source({
-      name: "Birthday Money",
-      price: 60,
-      budgetId: "abc123",
-    }),
-  ];
+  /** @type {import('./Models/Budget.js').Budget[]} */
+  budgets = loadState("budgets", Budget);
+  /** @type {import('./Models/Source.js').Source[]} */
+  sources = loadState("sources", Source);
 }
 
 export const appState = new Proxy(new AppState(), {
