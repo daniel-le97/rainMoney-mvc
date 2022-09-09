@@ -9,9 +9,9 @@ class AppState extends EventEmitter {
   /** @type {import('./Models/Value').Value[]} */
   values = loadState("values", Value);
 
-  /** @type {import('./Models/Budget.js').Budget[]} */
+  /** @type {import('./Models/Budget').Budget[]} */
   budgets = loadState("budgets", Budget);
-  /** @type {import('./Models/Source.js').Source[]} */
+  /** @type {import('./Models/Source').Source[]} */
   sources = loadState("sources", Source);
 }
 

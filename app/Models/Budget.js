@@ -5,7 +5,7 @@ export class Budget {
   constructor(data) {
     (this.name = data.name),
       (this.price = data.price),
-      (this.id = data.id || generateId);
+      (this.id = data.id || generateId());
     this.type = data.type;
   }
 
@@ -23,9 +23,16 @@ export class Budget {
     return sources;
   }
 
+  get SourcesTotal() {
+    let total = 0;
+    appState.sources.forEach((s) => (total += s.price));
+
+    return total;
+  }
+
   get Template() {
     return /*html*/ `
-      <div class="container">
+      <div class="container my-3 bg-info">
               <div class="row">
               <div class="col-12">
                 <div class="row">
@@ -36,7 +43,7 @@ export class Budget {
                     <h3>${this.type}</h3>
                     <span>${this.name}</span>
                     <div>
-                      <span>$360</span>
+                      <span>$${this.SourcesTotal}</span>
                       <span>of</span>
                       <span>$${this.price}</span>
                     </div>

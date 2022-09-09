@@ -8,6 +8,7 @@ export class Source {
     this.id = data.id || generateId();
   }
 
+
   get Template() {
     return `
             <div class="col-6">
@@ -19,7 +20,7 @@ export class Source {
                     </span>
                   </div>
                   <div class="col-2">
-                    <i class="mdi mdi-trash-can"></i>
+                    <i class="mdi mdi-trash-can" onclick="app.sourcesController.removeSource('${this.id}')"></i>
                   </div>      
       `;
   }
